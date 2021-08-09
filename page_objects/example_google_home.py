@@ -2,6 +2,7 @@ import fixtures.constants as Constants
 from fixtures.extensions import *
 from selenium.webdriver.common.by import By
 
+#example of a page object
 class GoogleHome:
     def __init__(self, driver):
         self.driver = driver

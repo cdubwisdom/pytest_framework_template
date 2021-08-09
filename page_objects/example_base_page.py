@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from fixtures.extensions import *
 
+#Base page that has methods usable across all page objects
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
