@@ -40,7 +40,7 @@ def find_element_with_wait(driver, by):
         except NoSuchElementException:
             time.sleep(5)
             attempts+=1
-    raise NoSuchElementException("The element with selector " + str(by) + " was not located within 2 attempts.")
+    raise NoSuchElementException(f"The element with selector {by} was not located within 2 attempts.")
 
 #sends keyboard actions or text to element
 def find_element_and_send_keys(driver, by, text, clear=True,retry=2):

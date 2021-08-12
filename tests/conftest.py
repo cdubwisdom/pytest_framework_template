@@ -3,8 +3,10 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from settings import *
+import os
 
 #Allows for browser options
+os.environ['WDM_LOG_LEVEL'] = '0'
 opts = Options()
 opts.headless = True #Test browse window will not be visible while test run
 
