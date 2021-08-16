@@ -7,7 +7,7 @@ from page_objects.example_web_result_page import WebResults
 class TestExample:
     def test_example(self):
         #Perform Web Search
-        GoogleHome(self.driver).web_search(search_query='pytest')
+        self.home_page.web_search(search_query='pytest')
 
         #Verify expected result is listed
-        assert WebResults(self.driver).is_expected_result_url_listed(search_result='https://pytest.org/') is True
+        assert self.results_page.is_expected_result_url_listed(search_result='https://pytest.org/') is True
