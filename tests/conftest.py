@@ -19,11 +19,14 @@ def page_object_init(request, driver):
 
 
 #Checks for latest ChromeDriver version
+@pytest.fixture(scope='session')
+def path_to_chrome():
+    return ChromeDriverManager(path=TEST_PATH).install()
 #Initalizes chrome driver and opens testing window, runs at the beginning of each test
 #Closes test window at end of test
 @pytest.fixture()
-def chrome_driver_init(request):
-    driver = webdriver.Chrome(options=opts, executable_path=ChromeDriverManager(path=TEST_PATH).install())
+def chrome_driver_init(request, path_to_chrome):
+    driver = webdriver.Chrome(options=opts, executable_path=path_to_chrome)
     request.cls.driver = driver
     page_object_init(request, driver)
     driver.get(URL)
