@@ -7,23 +7,26 @@ from page_objects.example_web_result_page import WebResults
 from settings import *
 import os
 
-#Allows for browser options
+# Allows for browser options
 os.environ['WDM_LOG_LEVEL'] = '0'
 opts = Options()
-opts.headless = True #Test browse window will not be visible while test run
+opts.headless = True  # Test browse window will not be visible while test run
 
-#Initialize page objects
+
+# Initialize page objects
 def page_object_init(request, driver):
     request.cls.home_page = GoogleHome(driver)
     request.cls.results_page = WebResults(driver)
 
 
-#Checks for latest ChromeDriver version
+# Checks for latest ChromeDriver version
 @pytest.fixture(scope='session')
 def path_to_chrome():
     return ChromeDriverManager(path=TEST_PATH).install()
-#Initalizes chrome driver and opens testing window, runs at the beginning of each test
-#Closes test window at end of test
+
+
+# Initializes chrome driver and opens testing window, runs at the beginning of each test
+# Closes test window at end of test
 @pytest.fixture()
 def chrome_driver_init(request, path_to_chrome):
     driver = webdriver.Chrome(options=opts, executable_path=path_to_chrome)
