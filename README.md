@@ -1,6 +1,6 @@
 # pytest_framework_template
 
-## A simple frameowrk to jump start web ui testing using Selenium Webdriver and the Pytest Page Object testing framework
+## A simple framework to jump start web ui testing using Selenium Webdriver and the Pytest Page Object testing framework
 ### Includes functions to help find and use web elements, simplifying test methods.
 
 # Modules Breakdown
@@ -15,11 +15,14 @@
 ### This framework uses page objects to navigate websites and simplify test writing. Currently contains an example of the Google Search Engine
 
 ## Tests
-### The test to be run are stored here. Currently contains a simple example test for searching on Google.
-### The conftest.py is what intalizes the driver. Is set up to check for the latest version of Chromedriver at start up
+### The test to be run are stored here. Currently, contains a simple example test for searching on Google.
+### The conftest.py is what initializes the driver. Is set up to check for the latest version of Chromedriver at start up
 
 ## Settings
 ### The settings.py is used to keep track of all variables needed for testing such as directory and urls.
 
-## Requirments
-### The requirments.txt lists all needed python modules to run the test suite.
+## Environment Setup
+### The pytest_env.yml can be used to create a conda python environment that will run the suite
+
+## Build(WIP)
+###Build script to run test suite from a command line and generate reports
