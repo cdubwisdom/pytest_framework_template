@@ -1,1 +1,0 @@
-#Constant variables for testing go here
