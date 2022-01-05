@@ -3,27 +3,33 @@
 ## A simple framework to jump start web ui testing using Selenium Webdriver and the Pytest Page Object testing framework
 ### Includes functions to help find and use web elements, simplifying test methods.
 
-# Modules Breakdown
-## Fixtures
-### Constants is as the name applies. A place to store variables that are used throught the test suite
-### Fixtures contains the functions that assist in finding and manipulating web elements
+### When developing test scripts it is recommended to run test cases in an IDE that has pytest integration such as PyCharm.
 
-## Helpers
-### Empty folder that would store classes and functions to help generate or store data
-
-## Page Objects
-### This framework uses page objects to navigate websites and simplify test writing. Currently contains an example of the Google Search Engine
-
-## Tests
-### The test to be run are stored here. Currently, contains a simple example test for searching on Google.
-### The conftest.py is what initializes the driver. Is set up to check for the latest version of Chromedriver at start up
-
-## Settings
-### The settings.py is used to keep track of all variables needed for testing such as directory and urls.
+## To Run Locally
+###Simply navigate to the project build folder and run build_run.sh
+```
+cd [YOUR_PATH]/project_path/build
+build_run.sh
+```
 
 ## Environment Setup
-### The pytest_env.yml can be used to create a conda python environment that will run the suite
+### Miniconda3 was used to manage this suite's environment. Be free to use your preferred method.
+### The pytest_env.yml is optimized for conda. To initialize first install [Anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html). Then from your IDE terminal run
+```
+conda env create --name ENV_NAME --file [FILE_PATH]/pytest_env.yml
+cond activate ENV_NAME
+```
+### Now you are ready to create and run tests
 
-## Build
-###Build script to run test suite from a command line and generate reports
-###Requires Andaconda or Miniconda to be installed and added to the PATH_VARIABLES 
+### If you install additional packages be sure to update the .yml otherwise the build script will fail.
+### Simply Run in the IDE terminal
+```
+conda env export > pytest_env.yml
+```
+
+## Debugging Tests
+### To assist in debugging tests it is recommended to disable headless mode so you can watch the code control the browser
+### In conftest.py comment out ```opts.headless = True```
+
+## Further Reading
+### Check out the [wiki](https://github.com/cdubwisdom/pytest_framework_template/wiki) for a deeper dive into the various modules
