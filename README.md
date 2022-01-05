@@ -24,5 +24,6 @@
 ## Environment Setup
 ### The pytest_env.yml can be used to create a conda python environment that will run the suite
 
-## Build(WIP)
+## Build
 ###Build script to run test suite from a command line and generate reports
+###Requires Andaconda or Miniconda to be installed and added to the PATH_VARIABLES 
