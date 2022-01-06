@@ -1,3 +1,4 @@
 /scr/tests/.pytest_cache/
 /scr/.pytest_cache/
 /.pytest_cache/
+/build/.pytest_cache/
