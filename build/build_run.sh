@@ -1,5 +1,19 @@
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1>./run_logs/log_"$(date "+%d-%m-%y-%H%M")".out 2>&1
+echo "Run Date: $(date)"
 conda init bash
-conda env create --name RUN_ENV --file ../pytest_env.yml -q --force
-conda activate RUN_ENV
+if conda env list | grep ".*PYTEST_ENV.*" >/dev/null 2>&1; then
+  echo "Updating Environment"
+  conda env update --name PYTEST_ENV --file ../pytest_env.yml --prune -q
+else
+  echo "Creating Environment"
+  conda env create --name PYTEST_ENV --file ../pytest_env.yml -q
+fi
+echo "Internalizing Environment"
+conda activate PYTEST_ENV
+echo "Set Up Complete"
 python run.py
+echo "Tearing Down Environment"
 conda deactivate
+
