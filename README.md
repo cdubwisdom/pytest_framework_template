@@ -28,7 +28,7 @@ conda env export > pytest_env.yml
 ```
 
 ## Debugging Tests
-### To assist in debugging tests it is recommended to disable headless mode so you can watch the code control the browser
+### To assist in debugging tests it is recommended to disable headless mode, so you can watch the code control the browser
 ### In conftest.py comment out ```opts.headless = True```
 
 ## Further Reading
