@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="12.896" timestamp="2022-01-05T13:46:54.180651" hostname="CPX-C0SWMP6MXP5"><testcase classname="scr.tests.test_example.TestExample" name="test_example" time="12.849" /></testsuite></testsuites>
