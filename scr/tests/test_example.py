@@ -1,6 +1,4 @@
 import pytest
-from scr.page_objects.example_google_home import GoogleHome
-from scr.page_objects.example_web_result_page import WebResults
 
 
 @pytest.mark.usefixtures('chrome_driver_init')
