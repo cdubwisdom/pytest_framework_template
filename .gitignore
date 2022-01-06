@@ -2,3 +2,4 @@
 /scr/.pytest_cache/
 /.pytest_cache/
 /build/.pytest_cache/
+/scr/drivers.json
