@@ -1,0 +1,39 @@
+Run Date: Thu Jan  6 09:35:22 CST 2022
+no change     ~\Miniconda3\Scripts\conda.exe
+no change     ~\Miniconda3\Scripts\conda-env.exe
+no change     ~\Miniconda3\Scripts\conda-script.py
+no change     ~\Miniconda3\Scripts\conda-env-script.py
+no change     ~\Miniconda3\condabin\conda.bat
+no change     ~\Miniconda3\Library\bin\conda.bat
+no change     ~\Miniconda3\condabin\_conda_activate.bat
+no change     ~\Miniconda3\condabin\rename_tmp.bat
+no change     ~\Miniconda3\condabin\conda_auto_activate.bat
+no change     ~\Miniconda3\condabin\conda_hook.bat
+no change     ~\Miniconda3\Scripts\activate.bat
+no change     ~\Miniconda3\condabin\activate.bat
+no change     ~\Miniconda3\condabin\deactivate.bat
+no change     ~\Miniconda3\Scripts\activate
+no change     ~\Miniconda3\Scripts\deactivate
+no change     ~\Miniconda3\etc\profile.d\conda.sh
+no change     ~\Miniconda3\etc\fish\conf.d\conda.fish
+no change     ~\Miniconda3\shell\condabin\Conda.psm1
+no change     ~\Miniconda3\shell\condabin\conda-hook.ps1
+no change     ~\Miniconda3\Lib\site-packages\xontrib\conda.xsh
+no change     ~\Miniconda3\etc\profile.d\conda.csh
+no change     ~\.bash_profile
+No action taken.
+Updating Environment
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+Installing pip dependencies: ...working... done
+Internalizing Environment
+Set Up Complete
+============================= test session starts =============================
+collecting ... collected 1 item
+
+..\scr\tests\test_example.py::TestExample::test_example PASSED           [100%]
+
+- generated xml file: ~\pytest_framework_template\build\reports\Test_Report_06-01-22-0935.xml -
+- generated html file: file://~\pytest_framework_template\build\reports\Test_Report_06-01-22-0935.html -
+============================= 1 passed in 26.96s ==============================
+Tearing Down Environment
