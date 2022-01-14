@@ -52,7 +52,7 @@ def pytest_runtest_makereport(item, call):
         nodeid = item.nodeid
         xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
-            file_name = f'{nodeid}_{datetime.today().strftime("%Y-%m-%d_%H:%M")}.png'.replace("/", "_").replace("::", "_")
+            file_name = f'{nodeid}_{datetime.today().strftime("%Y-%m-%d_%H:%M")}.png'.replace("/", "_").replace("::", "_").replace(".py_", "")
             img_path = os.path.join(REPORT_PATH, "screenshots", file_name)
             driver.save_screenshot(img_path)
             extra.append(pytest_html.extras.image(img_path))
