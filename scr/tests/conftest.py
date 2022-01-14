@@ -6,6 +6,8 @@ from scr.page_objects.example_google_home import GoogleHome
 from scr.page_objects.example_web_result_page import WebResults
 from scr.settings import *
 import os
+import time
+from datetime import datetime
 
 # Allows for browser options
 os.environ['WDM_LOG_LEVEL'] = '0'
@@ -34,7 +36,7 @@ def chrome_driver_init(request, path_to_chrome):
     page_object_init(request, driver)
     driver.get(URL)
     driver.maximize_window()
-    yield
+    yield driver
     driver.quit()
 
 
@@ -45,10 +47,13 @@ def pytest_runtest_makereport(item, call):
     report = outcome.get_result()
     extra = getattr(report, "extra", [])
     if report.when == "call":
-        # always add url to report
+        feature_request = item.funcargs['request']
+        driver = feature_request.getfixturevalue('chrome_driver_init')
+        nodeid = item.nodeid
         xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
-            # only add additional html on failure
-            extra.append(pytest_html.extras.image(REPORT_PATH+"image.png"))
-            extra.append(pytest_html.extras.html("<div>Additional HTML</div>"))
+            file_name = f'{nodeid}_{datetime.today().strftime("%Y-%m-%d_%H:%M")}.png'.replace("/", "_").replace("::", "_")
+            img_path = os.path.join(REPORT_PATH, "screenshots", file_name)
+            driver.save_screenshot(img_path)
+            extra.append(pytest_html.extras.image(img_path))
         report.extra = extra
