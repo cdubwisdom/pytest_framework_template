@@ -1,4 +1,4 @@
-Run Date: Tue Jan 18 16:50:41 CST 2022
+Run Date: Tue Jan 18 17:09:14 CST 2022
 no change     ~\Miniconda3\Scripts\conda.exe
 no change     ~\Miniconda3\Scripts\conda-env.exe
 no change     ~\Miniconda3\Scripts\conda-script.py
@@ -37,7 +37,7 @@ collecting ... collected 2 items
 ================================== FAILURES ===================================
 ________________________ TestExample.test_fail_example ________________________
 
-self = <scr.tests.test_example.TestExample object at 0x00000250D5407EE0>
+self = <scr.tests.test_example.TestExample object at 0x000002B931726C40>
 
     def test_fail_example(self):
         # Perform Web Search
@@ -46,14 +46,14 @@ self = <scr.tests.test_example.TestExample object at 0x00000250D5407EE0>
         # Verify expected result is listed
 >       assert self.results_page.is_expected_result_url_listed(search_result='https://docs.pytest.org/') is True
 E       AssertionError: assert False is True
-E        +  where False = <bound method WebResults.is_expected_result_url_listed of <scr.page_objects.example_web_result_page.WebResults object at 0x00000250D53E4070>>(search_result='https://docs.pytest.org/')
-E        +    where <bound method WebResults.is_expected_result_url_listed of <scr.page_objects.example_web_result_page.WebResults object at 0x00000250D53E4070>> = <scr.page_objects.example_web_result_page.WebResults object at 0x00000250D53E4070>.is_expected_result_url_listed
-E        +      where <scr.page_objects.example_web_result_page.WebResults object at 0x00000250D53E4070> = <scr.tests.test_example.TestExample object at 0x00000250D5407EE0>.results_page
+E        +  where False = <bound method WebResults.is_expected_result_url_listed of <scr.page_objects.example_web_result_page.WebResults object at 0x000002B9316E1130>>(search_result='https://docs.pytest.org/')
+E        +    where <bound method WebResults.is_expected_result_url_listed of <scr.page_objects.example_web_result_page.WebResults object at 0x000002B9316E1130>> = <scr.page_objects.example_web_result_page.WebResults object at 0x000002B9316E1130>.is_expected_result_url_listed
+E        +      where <scr.page_objects.example_web_result_page.WebResults object at 0x000002B9316E1130> = <scr.tests.test_example.TestExample object at 0x000002B931726C40>.results_page
 
 ..\scr\tests\test_example.py:18: AssertionError
-- generated xml file: ~\pytest_framework_template\build\reports\Test_Report_18-01-22-1650.xml -
-- generated html file: file://~\pytest_framework_template\build\reports\Test_Report_18-01-22-1650.html -
+- generated xml file: ~\pytest_framework_template\build\reports\Test_Report_18-01-22-1709.xml -
+- generated html file: file://~\pytest_framework_template\build\reports\Test_Report_18-01-22-1709.html -
 =========================== short test summary info ===========================
 FAILED ..\scr\tests\test_example.py::TestExample::test_fail_example - Asserti...
-======================== 1 failed, 1 passed in 38.09s =========================
+======================== 1 failed, 1 passed in 51.77s =========================
 Tearing Down Environment

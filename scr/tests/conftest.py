@@ -53,12 +53,8 @@ def pytest_runtest_makereport(item):
     if report.when == "call":
         feature_request = item.funcargs['request']
         driver = feature_request.getfixturevalue('chrome_driver_init')
-        nodeid = item.nodeid
         xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
-            file_name = f'{nodeid}_{datetime.today().strftime("%Y-%m-%d_%H_%M")}.png'.replace("/", "_").replace("::", "_").replace(".py", "")
-            img_path = os.path.join(REPORT_PATH, f"screenshots\\{datetime.today().strftime('%Y-%m-%d_%H_%M')}", file_name)
-            driver.save_screenshot(img_path)
             screenshot = driver.get_screenshot_as_base64()
             extra.append(pytest_html.extras.image(screenshot, ''))
         report.extra = extra
