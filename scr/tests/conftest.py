@@ -1,3 +1,5 @@
+import pathlib
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -6,8 +8,9 @@ from scr.page_objects.example_google_home import GoogleHome
 from scr.page_objects.example_web_result_page import WebResults
 from scr.settings import *
 import os
-import time
 from datetime import datetime
+
+
 
 # Allows for browser options
 os.environ['WDM_LOG_LEVEL'] = '0'
@@ -40,8 +43,9 @@ def chrome_driver_init(request, path_to_chrome):
     driver.quit()
 
 
+# Hook that takes a screenshot of the web browser for failed tests and adds it to the HTML report
 @pytest.hookimpl(hookwrapper=True)
-def pytest_runtest_makereport(item, call):
+def pytest_runtest_makereport(item):
     pytest_html = item.config.pluginmanager.getplugin("html")
     outcome = yield
     report = outcome.get_result()
@@ -52,8 +56,9 @@ def pytest_runtest_makereport(item, call):
         nodeid = item.nodeid
         xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
-            file_name = f'{nodeid}_{datetime.today().strftime("%Y-%m-%d_%H:%M")}.png'.replace("/", "_").replace("::", "_").replace(".py_", "")
-            img_path = os.path.join(REPORT_PATH, "screenshots", file_name)
+            file_name = f'{nodeid}_{datetime.today().strftime("%Y-%m-%d_%H_%M")}.png'.replace("/", "_").replace("::", "_").replace(".py", "")
+            img_path = os.path.join(REPORT_PATH, f"screenshots\\{datetime.today().strftime('%Y-%m-%d_%H_%M')}", file_name)
             driver.save_screenshot(img_path)
-            extra.append(pytest_html.extras.image(img_path))
+            screenshot = driver.get_screenshot_as_base64()
+            extra.append(pytest_html.extras.image(screenshot, ''))
         report.extra = extra
