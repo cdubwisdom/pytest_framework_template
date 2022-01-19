@@ -14,4 +14,5 @@
   python run.py
   echo "Tearing Down Environment"
   conda deactivate
+  taskkill /F /IM chromedriver.exe
 }  2>&1 | tee -a ./run_logs/log_"$(date "+%d-%m-%y-%H%M")".out
