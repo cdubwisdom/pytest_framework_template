@@ -6,7 +6,7 @@
 ### When developing test scripts it is recommended to run test cases in an IDE that has pytest integration such as PyCharm.
 
 ## To Run Locally
-###Simply navigate to the project build folder and run build_run.sh
+### Simply navigate to the project build folder and run build_run.sh
 ```
 cd [YOUR_PATH]/project_path/build
 build_run.sh
