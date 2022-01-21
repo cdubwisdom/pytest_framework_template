@@ -1,8 +1,16 @@
 import os
-import datetime
+import argparse
 
-today = datetime.datetime.today().strftime("%d-%m-%y-%H%M")
+parser = argparse.ArgumentParser()
+parser.add_argument("-dt", "--Datetime", help="Datetime stamp")
+today = parser.parse_args()
 
 
 if __name__ == "__main__":
-    os.system(f"pytest --no-header -v ../scr/tests/ --html=./reports/Test_Report_{today}.html --junitxml=./reports/Test_Report_{today}.xml --self-contained-html")
+    os.system(
+        "pytest --no-header -v ../scr/tests/ "
+        f"--html=./reports/Test_Report_{today.Datetime}.html "
+        f"--junitxml=./reports/Test_Report_{today.Datetime}.xml "
+        "--self-contained-html "
+        f"--Datetime {today.Datetime}"
+    )

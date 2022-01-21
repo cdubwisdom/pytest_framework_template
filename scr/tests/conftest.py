@@ -16,6 +16,11 @@ opts = Options()
 opts.headless = True  # Test browse window will not be visible while test run
 
 
+# Gets Command Line arguments
+def pytest_addoption(parser):
+    parser.addoption("--Datetime", action="store", default=datetime.today().strftime('%d.%m.%y.%H_%M'), help="Required for saving of screenshots")
+
+
 # Initialize page objects
 def page_object_init(request, driver):
     request.cls.home_page = GoogleHome(driver)
@@ -32,12 +37,13 @@ def path_to_chrome():
 # Closes test window at end of test
 @pytest.fixture()
 def chrome_driver_init(request, path_to_chrome):
+    today = request.config.getoption("--Datetime")
     driver = webdriver.Chrome(options=opts, executable_path=path_to_chrome)
     request.cls.driver = driver
     page_object_init(request, driver)
     driver.get(URL)
     driver.maximize_window()
-    yield driver
+    yield driver, today
     driver.quit()
 
 
@@ -50,9 +56,11 @@ def pytest_runtest_makereport(item):
     extra = getattr(report, "extra", [])
     if report.when == "call":
         feature_request = item.funcargs['request']
-        driver = feature_request.getfixturevalue('chrome_driver_init')
+        nodeid = str(item.nodeid).replace("::", "_").replace(".py", "").replace("/", "_")[10:]
+        driver, today = feature_request.getfixturevalue('chrome_driver_init')
         xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
+            driver.save_screenshot(f"./reports/screenshots/{today}/{nodeid}.png")
             screenshot = driver.get_screenshot_as_base64()
             extra.append(pytest_html.extras.image(screenshot, ''))
         report.extra = extra
