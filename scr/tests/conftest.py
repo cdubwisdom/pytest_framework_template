@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from scr.page_objects.example_google_home import GoogleHome
 from scr.page_objects.example_web_result_page import WebResults
+from scr.page_objects.example_img_result_page import ImgResults
 from scr.settings import *
 import os
 from datetime import datetime
@@ -24,7 +25,8 @@ def pytest_addoption(parser):
 # Initialize page objects
 def page_object_init(request, driver):
     request.cls.home_page = GoogleHome(driver)
-    request.cls.results_page = WebResults(driver)
+    request.cls.web_results_page = WebResults(driver)
+    request.cls.img_results_page = ImgResults(driver)
 
 
 # Checks for latest ChromeDriver version
