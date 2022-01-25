@@ -33,9 +33,9 @@ def wait_for_element_to_exist(driver, by, seconds=10, negative=False):
 
 
 # waits for element to exist and returns WebElement
-def find_element_with_wait(driver, by):
+def find_element_with_wait(driver, by, retry=2):
     attempts = 0
-    while attempts < 2:
+    while attempts < retry:
         try:
             wait_for_element_to_exist(driver, by)
             return driver.find_element(*by)
@@ -46,35 +46,18 @@ def find_element_with_wait(driver, by):
 
 
 # sends keyboard actions or text to element
-def find_element_and_send_keys(driver, by, text, clear=True, retry=2):
-    attempts = 0
+def find_element_and_send_keys(driver, by, keys, clear=True, retry=2):
+    element = find_element_with_wait(driver, by, retry)
 
-    while attempts < retry:
-        element = find_element_with_wait(driver, by)
-
-        try:
-            if clear:
-                element.clear()
-            element.send_keys(text)
-            break  # if event is successful
-        except:
-            attempts += 1
-            time.sleep(2)
+    if clear:
+        element.clear()
+    element.send_keys(keys)
 
 
 # Clicks on element
 def find_element_and_click(driver, by, retry=2):
-    attempts = 0
-
-    while attempts < retry:
-        element = find_element_with_wait(driver, by)
-
-        try:
-            element.click()
-            break  # if event is successful
-        except:
-            attempts += 1
-            time.sleep(2)
+    element = find_element_with_wait(driver, by, retry)
+    element.click()
 
 
 # Looks for a web alert and accepts it, if no alert found moves on
@@ -86,20 +69,20 @@ def accept_alert_if_visible(driver):
 
 
 # Selects a dropdown option by its html text from element
-def open_and_select_dropdown_by_text(driver, by, option):
-    element = Select(find_element_with_wait(driver, by))
+def open_and_select_dropdown_by_text(driver, by, option, retry=2):
+    element = Select(find_element_with_wait(driver, by, retry))
     element.select_by_visible_text(option)
 
 
 # Selects a dropdown option based on html value
-def open_and_select_dropdown_by_value(driver, by, option):
-    element = Select(find_element_with_wait(driver, by))
+def open_and_select_dropdown_by_value(driver, by, option, retry=2):
+    element = Select(find_element_with_wait(driver, by, retry))
     element.select_by_value(option)
 
 
 # Verifies if text in element matches given string
-def does_text_match(driver, by, text):
-    element = find_element_with_wait(driver, by)
+def does_text_match(driver, by, text, retry=2):
+    element = find_element_with_wait(driver, by, retry)
     try:
         assert element.text.find(text) != -1
         return True
