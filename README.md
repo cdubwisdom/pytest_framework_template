@@ -5,7 +5,8 @@
 When developing test scripts it is recommended to run test cases in an IDE that has pytest integration such as PyCharm.
 
 ### To Run Locally
-Requires [Anaconda/Minconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html) to be installed and added to PATH 
+Requires [Anaconda/Minconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html) to be installed and added to PATH.
+
 Simply navigate to the project build folder and run build_run.sh
 ```
 cd [YOUR_PATH]/project_path/build
