@@ -15,4 +15,4 @@ class TestPassExamples:
         self.home_page.img_search(search_query='pytest')
 
         # Verify expected result is listed
-        assert self.img_results_page.is_expected_result_img_listed(search_result='pytest · PyPI') is True
+        assert self.img_results_page.is_expected_result_img_listed(search_result='Get Started') is True

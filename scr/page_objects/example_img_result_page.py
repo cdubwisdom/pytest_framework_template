@@ -13,5 +13,5 @@ class ImgResults(BasePage):
 class Selectors:
     @staticmethod
     def RESULT_IMG(title):
-        element = (By.XPATH, f'//img[@alt="{title}"]')
+        element = (By.XPATH, f'//img[contains(@alt, "{title}")]')
         return element

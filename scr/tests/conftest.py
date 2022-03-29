@@ -9,8 +9,6 @@ from scr.settings import *
 import os
 from datetime import datetime
 
-
-
 # Allows for browser options
 os.environ['WDM_LOG_LEVEL'] = '0'
 opts = Options()
@@ -19,7 +17,8 @@ opts.headless = True  # Test browse window will not be visible while test run
 
 # Gets Command Line arguments
 def pytest_addoption(parser):
-    parser.addoption("--Datetime", action="store", default=datetime.today().strftime('%d.%m.%y.%H_%M'), help="Required for saving of screenshots")
+    parser.addoption("--Datetime", action="store", default=datetime.today().strftime('%d.%m.%y.%H_%M'),
+                     help="Required for saving of screenshots")
 
 
 # Initialize page objects
@@ -39,7 +38,7 @@ def path_to_chrome():
 # Closes test window at end of test
 @pytest.fixture()
 def chrome_driver_init(request, path_to_chrome):
-    today = request.config.getoption("--Datetime")
+    today = request.config.getoption("--Datetime")  # Used to save screenshot to correct folder
     driver = webdriver.Chrome(options=opts, executable_path=path_to_chrome)
     request.cls.driver = driver
     page_object_init(request, driver)
