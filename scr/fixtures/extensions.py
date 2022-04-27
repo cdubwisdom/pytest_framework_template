@@ -1,19 +1,18 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
+from selenium.webdriver.chrome.webdriver import WebDriver
 import time
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
 from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def element_exists(driver, by):
+def element_exists(driver: WebDriver, by: tuple[str, str]) -> bool:
     return driver.find_elements(*by).count > 0
 
 
 # waits for element to exist(or disappear) on web page
-def wait_for_element_to_exist(driver, by, seconds=10, negative=False):
+def wait_for_element_to_exist(driver: WebDriver, by: tuple[str, str], seconds: int = 10, negative: bool = False) -> bool:
     wait = WebDriverWait(driver, seconds)
 
     # waiting for element to exist
@@ -33,7 +32,7 @@ def wait_for_element_to_exist(driver, by, seconds=10, negative=False):
 
 
 # waits for element to exist and returns WebElement
-def find_element_with_wait(driver, by, retry=2):
+def find_element_with_wait(driver: WebDriver, by: tuple[str, str], retry: int = 2) -> WebElement:
     attempts = 0
     while attempts < retry:
         try:
@@ -46,7 +45,7 @@ def find_element_with_wait(driver, by, retry=2):
 
 
 # sends keyboard actions or text to element
-def find_element_and_send_keys(driver, by, keys, clear=True, retry=2):
+def find_element_and_send_keys(driver: WebDriver, by: tuple[str, str], keys: str, clear: bool = True, retry: int = 2) -> None:
     element = find_element_with_wait(driver, by, retry)
 
     if clear:
@@ -55,33 +54,33 @@ def find_element_and_send_keys(driver, by, keys, clear=True, retry=2):
 
 
 # Clicks on element
-def find_element_and_click(driver, by, retry=2):
+def find_element_and_click(driver: WebDriver, by: tuple[str, str], retry: int = 2) -> None:
     element = find_element_with_wait(driver, by, retry)
     element.click()
 
 
 # Looks for a web alert and accepts it, if no alert found moves on
-def accept_alert_if_visible(driver):
+def accept_alert_if_visible(driver: WebDriver) -> None:
     try:
         driver.switch_to.alert.accept()
     except NoAlertPresentException:
-        pass
+        print("No Alert Displayed")
 
 
 # Selects a dropdown option by its html text from element
-def open_and_select_dropdown_by_text(driver, by, option, retry=2):
+def open_and_select_dropdown_by_text(driver: WebDriver, by: tuple[str, str], option: str, retry: int = 2) -> None:
     element = Select(find_element_with_wait(driver, by, retry))
     element.select_by_visible_text(option)
 
 
 # Selects a dropdown option based on html value
-def open_and_select_dropdown_by_value(driver, by, option, retry=2):
+def open_and_select_dropdown_by_value(driver: WebDriver, by: tuple[str, str], option: int, retry: int = 2) -> None:
     element = Select(find_element_with_wait(driver, by, retry))
     element.select_by_value(option)
 
 
 # Verifies if text in element matches given string
-def does_text_match(driver, by, text, retry=2):
+def does_text_match(driver: WebDriver, by: tuple[str, str], text: str, retry: int = 2) -> bool:
     element = find_element_with_wait(driver, by, retry)
     try:
         assert element.text.find(text) != -1

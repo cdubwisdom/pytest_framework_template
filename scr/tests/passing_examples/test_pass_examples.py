@@ -8,11 +8,11 @@ class TestPassExamples:
         self.home_page.web_search(search_query='pytest')
 
         # Verify expected result is listed
-        assert self.web_results_page.is_expected_result_url_listed(search_result='https://docs.pytest.org/') is True
+        assert self.web_results_page.is_expected_result_url_listed(search_result='https://pytest.org/') is True
 
     def test_img_search(self):
         # Perform Image Search
         self.home_page.img_search(search_query='pytest')
 
         # Verify expected result is listed
-        assert self.img_results_page.is_expected_result_img_listed(search_result='Get Started') is True
+        assert self.img_results_page.is_expected_result_img_listed(search_result='Pytest - Wikipedia') is True

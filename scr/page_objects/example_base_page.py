@@ -4,16 +4,16 @@ from scr.fixtures.extensions import *
 
 # Base page that has methods usable across all page objects
 class BasePage:
-    def __init__(self, driver):
+    def __init__(self, driver: WebDriver) -> None:
         self.driver = driver
 
-    def image_results(self):
+    def image_results(self) -> None:
         find_element_and_click(self.driver, Selectors.IMAGE_RESULT_TAB)
 
-    def all_results(self):
+    def all_results(self) -> None:
         find_element_and_click(self.driver, Selectors.ALL_RESULT_TAB)
 
-    def news_results(self):
+    def news_results(self) -> None:
         find_element_and_click(self.driver, Selectors.NEWS_RESULT_TAB)
 
 

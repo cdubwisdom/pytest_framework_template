@@ -1,6 +1,7 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.webdriver import WebDriver
 from webdriver_manager.chrome import ChromeDriverManager
 from scr.page_objects.example_google_home import GoogleHome
 from scr.page_objects.example_web_result_page import WebResults
@@ -16,13 +17,13 @@ opts.headless = True  # Test browse window will not be visible while test run
 
 
 # Gets Command Line arguments
-def pytest_addoption(parser):
+def pytest_addoption(parser) -> None:
     parser.addoption("--Datetime", action="store", default=datetime.today().strftime('%d.%m.%y.%H_%M'),
                      help="Required for saving of screenshots")
 
 
 # Initialize page objects
-def page_object_init(request, driver):
+def page_object_init(request, driver: WebDriver) -> None:
     request.cls.home_page = GoogleHome(driver)
     request.cls.web_results_page = WebResults(driver)
     request.cls.img_results_page = ImgResults(driver)
@@ -30,14 +31,14 @@ def page_object_init(request, driver):
 
 # Checks for latest ChromeDriver version
 @pytest.fixture(scope='session')
-def path_to_chrome():
+def path_to_chrome() -> str:
     return ChromeDriverManager(path=TEST_PATH).install()
 
 
 # Initializes chrome driver and opens testing window, runs at the beginning of each test
 # Closes test window at end of test
 @pytest.fixture()
-def chrome_driver_init(request, path_to_chrome):
+def chrome_driver_init(request, path_to_chrome: str) -> WebDriver and str:
     today = request.config.getoption("--Datetime")  # Used to save screenshot to correct folder
     driver = webdriver.Chrome(options=opts, executable_path=path_to_chrome)
     request.cls.driver = driver

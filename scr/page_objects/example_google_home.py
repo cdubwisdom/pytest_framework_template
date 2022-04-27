@@ -6,19 +6,17 @@ from selenium.webdriver.common.keys import Keys
 
 # example of a page object
 class GoogleHome:
-    def __init__(self, driver):
+    def __init__(self, driver: WebDriver) -> None:
         self.driver = driver
 
-    def web_search(self, search_query):
+    def web_search(self, search_query: str) -> None:
         find_element_and_send_keys(self.driver, Selectors.SEARCH_BAR, search_query)
         find_element_and_click(self.driver, Selectors.SEARCH_BUTTON)
 
-    def img_search(self, search_query):
+    def img_search(self, search_query: str) -> None:
         find_element_and_click(self.driver, Selectors.IMG_SEARCH)
         find_element_and_send_keys(self.driver, Selectors.SEARCH_BAR, search_query)
-        find_element_and_send_keys(self.driver, Selectors.SEARCH_BAR, Keys.RETURN,  clear=False)
-
-
+        find_element_and_send_keys(self.driver, Selectors.SEARCH_BAR, Keys.RETURN, clear=False)
 
 
 class Selectors:
