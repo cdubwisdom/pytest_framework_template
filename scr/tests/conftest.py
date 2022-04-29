@@ -43,6 +43,7 @@ def chrome_driver_init(request, path_to_chrome: str) -> WebDriver and str:
     driver = webdriver.Chrome(options=opts, executable_path=path_to_chrome)
     request.cls.driver = driver
     page_object_init(request, driver)
+    # Given: I am on the Google Search Page
     driver.get(URL)
     driver.maximize_window()
     yield driver, today
