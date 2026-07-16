@@ -35,6 +35,5 @@ To assist in debugging tests it is recommended to disable headless mode, so you 
 In conftest.py comment out ```opts.headless = True```
 
 ### Further Reading
-Check out the [wiki](https://github.com/cdubwisdom/pytest_framework_template/wiki) (WIP) for a deeper dive into the various modules.
 
 Please Review the [Writer](https://github.com/cdubwisdom/pytest_framework_template/wiki/Writer-Helper) class before developing new test methods.
